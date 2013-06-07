@@ -120,17 +120,30 @@ Empty Block
 .sched-empty-block {
 	border: 10px dashed rgba(0,0,255,0.5);
 	background: rgba(0,0,255,0.1);
-	opacity:0;
-	 -webkit-transition: all 0.2s ease;
-	-moz-transition: all 0.2s ease;
-	-ms-transition: all 0.2s ease;
-	-o-transition: all 0.2s ease;
-	transition: all 0.2s ease;
+	display: block;
+	opacity: 0;
+	cursor: pointer;
 }
 
-.sched-empty-block:hover {
-	opacity:1;
+.sched-empty-block-collapsed {
+	display:none;
 }
+
+span.empty-block-title {
+	display:table;
+	width:100%;
+	height:100%;
+}
+
+.empty-block-title span {
+	text-align:center;
+	vertical-align:middle;
+	display:table-cell;
+	font-size:1.5em;
+}
+
+.empty-double-1 { width:45%; }
+.empty-double-2 { width:45%; left:50%; }
 
 
 
@@ -190,4 +203,4 @@ List of Added Blocks
 span.block-list-title {
 	font-size:1.2em;
 	padding-left:0;
-} 
+}

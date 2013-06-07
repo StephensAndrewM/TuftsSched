@@ -58,9 +58,9 @@ var Sched = {
 		// Double For Loop Because PERIODS Is Split Up into Multiple Objects
 		// Based on the Type of Period of Each
 		for (var type in PERIODS) {
-			for (var j in PERIODS[type]) {
+			for (var title in PERIODS[type]) {
 
-				var period = PERIODS[type][j];
+				var period = PERIODS[type][title];
 
 				// Compensate for Padding and Border on SchedCell
 				//var actualCellHeight = Sched.cellHeight + 10 + 1;
@@ -75,15 +75,25 @@ var Sched = {
 					// Column That Will Contain the Day Block
 					var col = $('#sched-col-'+time.day);
 
-					// Create Cal Block Object and Position Based on 
-					var block = $('<div class="sched-block sched-empty-block"></div>');
+					// Create Cal Block Object
+					var block = $('<div class="sched-block sched-empty-block sched-empty-block-collapsed"></div>');
+					
+					// Add Type Attribute for jQuery Interaction
+					var title_sn = title.replace('+', 'plus');
+					block.addClass('series-'+type);
+					block.addClass('period-'+title_sn);
+					block.attr('data-period', title_sn);
 
 					// Calculate Positioning Based on Numeric Times
 					bTop = time.start*actualCellHeight;
 					bHeight = ((time.duration/60)*actualCellHeight); // -24 Because of SchedEmptyBlock Border and Padding
 					block.css({ top:bTop, height:bHeight });
+					
+					// Reposition Block in Case of Overlap
+					if (time.column !== 0) { block.addClass('empty-double-'+time.column); }
 
-					block.append('<span class="empty-block-title">'+j+' Block</span>')
+					// Inner Text for Empty Block
+					block.append('<span class="empty-block-title"><span>'+title+'</span></span>')
 
 					// Put Event Data in Block
 					//var timeText = decimalToTime(time.start)+' - '+decimalToTime(time.start+(time.duration/60));
@@ -100,8 +110,12 @@ var Sched = {
 			}
 		}
 		
-		
-		
+	},
+			
+	preload: function(data) {
+		for (var i in data) {
+			Sched.addBlock(data[i]);
+		}
 	},
 			
 	addBlock: function(data) {

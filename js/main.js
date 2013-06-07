@@ -1,7 +1,8 @@
-var SchedTime = function(day, start, duration) {
+var SchedTime = function(day, start, duration, column) {
 	this.day = day;
 	this.start = start;
 	this.duration = duration;
+	this.column = (typeof column === "undefined") ? 0 : column;
 };
 
 // String Constants for Days in Week
@@ -16,13 +17,13 @@ function timeToDecimal(time) {
 	var time_spl = time.split(':');
 	hr = Number(time_spl[0]);
 	min = Number(time_spl[1]);
-	return (hr-Sched.START_HOUR) + (min/60);
+	return (hr-START_HOUR) + (min/60);
 	
 }
 
 // Takes a Time in Decimal Format and Returns a h:m Format
 function decimalToTime(dec) {
-	hr = dec+Sched.START_HOUR;
+	hr = dec+START_HOUR;
 	min = Math.floor((hr%1)*60);
 	if (hr > 12) { hr = hr%12; }
 	hr = parseInt(hr);
