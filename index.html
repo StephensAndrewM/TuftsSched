@@ -9,9 +9,10 @@
 	<title>View My Tufts Schedule</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
-	<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css' />-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="css/normalize.css" />
 	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="libraries/fancybox/jquery.fancybox.css" />
 	<!--<script src="js/vendor/modernizr-2.6.1.min.js"></script>-->
 </head>
 <body>
@@ -36,9 +37,34 @@
 	<!-- Filled with Javascript -->
 	<div id="sched-view"></div>
 	
+	<div id="modal-backdrop"></div>
+	<div class="modal" id="class-data-modal">
+		<form id="class-data-form">
+			
+			<h2>Enter Class Data</h2>
+			
+			<label for="data-input-title" class="class-data-label label-title">Class Name</label>
+			<input type="text" name="data-input-title" id="data-input-title" placeholder="Enter Class Name" class="class-data-input" />
+			<label for="data-input-title" class="class-data-label label-title">Class Location</label>
+			<input type="text" name="data-input-location" id="data-input-location" placeholder="Enter Class Location" class="class-data-input" />
+			<label for="data-input-title" class="class-data-label label-professor">Class Professor</label>
+			<input type="text" name="data-input-professor" id="data-input-professor" placeholder="Enter Class Professor" class="class-data-input" />
+			<label for="data-input-title" class="class-data-label label-time">Class Time</label>
+			<div class="class-data-display" id="data-display-time">
+				<span class="data-display-heading">F+ Block</span>
+				Tues 10:30 AM - 11:45 AM<br />
+				Thurs 10:30 AM - 11:45 AM
+			</div>
+			
+			<input type="submit" value="Add Class to Calendar" class="button-add-class" />
+			<input type="submit" value="Close" class="button-close-form"/>
+			
+		</form>
+	</div>
+	
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+<script type="text/javascript" src="libraries/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/periods.defs.js"></script>
 <script type="text/javascript" src="js/sched.js"></script>
