@@ -209,37 +209,36 @@ span.block-list-title {
 Modal
 ******************/
 
-#modal-backdrop {
-	background:rgba(0,0,0,0.5);
-	width:100%;
-	height:100%;
-	position:absolute;
-	top:0;
-	left:0;
-	/*display:none;*/
-}
-
 .modal {
 	width:500px;
+	display:none;
 	min-height:300px;
-	position:absolute;
-	background:#202020;
-	top:0;
-	left:0;
-	/*display:none;*/
-	color:white;
+	/*background:#202020;*/
+	/*color:white;*/
 	padding:20px;
 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.modal h2 {
+	margin-top:0;
 }
 
 .class-data-label {
 	width:26px;
 	height:37px;
-	background:#00ffff;
+	/*background:#00ffff;*/
 	float:left;
 	overflow:hidden;
 	text-indent: -9999em;
+	background-size:16px;
+	background-position:5px center;
+	background-repeat:no-repeat;
 }
+
+.label-title { background-image: url(../img/information.svg); }
+.label-location { background-image: url(../img/pin_filled.svg); }
+.label-professor { background-image: url(../img/user_close.svg); }
+.label-time { background-image: url(../img/clock.svg); }
 
 .class-data-input {
 	float:left;
@@ -247,9 +246,15 @@ Modal
 	font-family:'Open Sans', Arial, sans-serif;
 	padding:7px 9px;
 	margin-bottom:7px;
-	border:1px solid black;
-	background:#404040;
+	border:1px solid #a0a0a0;
+	background:#c0c0c0;
+	color:black;
 }
+
+.class-data-input::-webkit-input-placeholder { color: #404040; }
+.class-data-input:-moz-placeholder { color: #404040; }
+.class-data-input::-moz-placeholder { color: #404040; }
+.class-data-input:-ms-input-placeholder { color: #404040; }
 
 .class-data-display {
 	width:414px;
@@ -257,12 +262,12 @@ Modal
 	margin-bottom:7px;
 	float:left;
 	font-size:0.8em;
-	color: #a0a0a0;
+	color: #505050;
 }
 
 .data-display-heading {
 	font-size:1.2em;
-	color:white;
+	color:black;
 	display: block;
 }
 

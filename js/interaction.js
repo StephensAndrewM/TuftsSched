@@ -69,9 +69,32 @@ var Interaction = {
 			
 		}).click(function() {
 			
-			// This is More Complex
+			var period = $(this).attr('data-period');
+			Interaction.addBlockModalOpen(period);
 			
 		});
+		
+	},
+	
+	addBlockModalOpen: function(period) {
+		
+		$.fancybox({
+			href: '#class-data-modal',
+			width:500
+		});
+		
+		$('#class-data-form').submit(Interaction.addBlockModalSave);
+		$('.button-close-form').click(function() {
+			$.fancybox.close();
+		})
+	
+	},
+	
+	addBlockModalSave: function() {
+		
+		
+		
+		return false;
 		
 	}
 	

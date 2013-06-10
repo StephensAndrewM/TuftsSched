@@ -1,3 +1,14 @@
+/* SchedTime Class Delcaration
+ * Used in Predefined Periods Data
+ * Each Empty Block Has Its Own SchedTime
+ * 
+ * @param day Numeric Day of Week, 0-4
+ * @param start Decimal Time for Beginning of Block
+ * @param duration Integer, Number of Minutes in Block
+ * @param column If Multiple Empty Blocks are in the Same Time Slot,
+ *		the Column Param Determines How to Orient Each (Left or Right)
+ *		If Zero or Empty, The Block is the Only One in the Time Slot
+ */
 var SchedTime = function(day, start, duration, column) {
 	this.day = day;
 	this.start = start;
@@ -7,6 +18,7 @@ var SchedTime = function(day, start, duration, column) {
 
 // String Constants for Days in Week
 DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+// Used as Base for Calculating Decimal Time
 START_HOUR = 8;	// 8 AM
 END_HOUR = 21;	// 9 PM
 
