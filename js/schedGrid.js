@@ -1,11 +1,11 @@
-var Sched = {
+var SchedGrid = {
 	
 	// Height of Each Schedule Block
 	cellHeight: 70,
 			
 	init: function() {
-		Sched.tableSetup();
-		Sched.emptyBlockSetup();		
+		SchedGrid.tableSetup();
+		SchedGrid.emptyBlockSetup();		
 	},
 			
 	tableSetup: function() {
@@ -49,7 +49,7 @@ var Sched = {
 		}
 		
 		// Adjust Height of All Cells
-		$('.sched-cell').css({ height:Sched.cellHeight });
+		$('.sched-cell').css({ height:SchedGrid.cellHeight });
 		
 	},
 			
@@ -63,8 +63,8 @@ var Sched = {
 				var period = PERIODS[type][title];
 
 				// Compensate for Padding and Border on SchedCell
-				//var actualCellHeight = Sched.cellHeight + 10 + 1;
-				var actualCellHeight = Sched.cellHeight;
+				//var actualCellHeight = SchedGrid.cellHeight + 10 + 1;
+				var actualCellHeight = SchedGrid.cellHeight;
 
 				// Generate a Block for Each Time Data Object
 				for (i = 0; i < period.length; i++) {
@@ -112,17 +112,11 @@ var Sched = {
 		
 	},
 			
-	preload: function(data) {
-		for (var i in data) {
-			Sched.addBlock(data[i]);
-		}
-	},
-			
 	addBlock: function(data) {
 
 		// Compensate for Padding and Border on SchedCell
-		//var actualCellHeight = Sched.cellHeight + 10 + 1;
-		var actualCellHeight = Sched.cellHeight;
+		//var actualCellHeight = SchedGrid.cellHeight + 10 + 1;
+		var actualCellHeight = SchedGrid.cellHeight;
 		
 		// Generate a Block for Each Time Data Object
 		for (i = 0; i < data.times.length; i++) {
@@ -162,26 +156,14 @@ var Sched = {
 
 		}
 		
-		// Create Sidebar Block Object (Only One Per Item)
-		block = $('<li class="block-list-item"></li>');
+	},
+			
+	editBlock: function(data) {
 		
-		// Set Color Based on Preset Data
-		block.css({ 
-			background:'rgba('+data.color[0]+','+data.color[1]+','+data.color[2]+',1)'
-		});
-
-		// Put Event Data in Block
-		block.append('<span class="block-list-title">'+data.title+'</span>');
-		block.append('<span class="block-list-professor">'+data.professor+'</span>');
-		block.append('<span class="block-list-location">'+data.location+'</span>');
-		block.append('<span class="block-list-time">'+data.timeLabel+'</span>');
-
-		// Then Display the Sidebar Block
-		$('#block-list').append(block);
+	},
+			
+	removeBlock: function(data) {
 		
 	}
 	
-};
-
-
-$(document).ready(Sched.init);
+}

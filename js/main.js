@@ -1,3 +1,9 @@
+/* Global Schedule Data Array
+ * Must Be Updated Any Time a Display is Updated
+ * This Data is Saved to the Server
+ */
+var Sched = [];
+
 /* SchedTime Class Delcaration
  * Used in Predefined Periods Data
  * Each Empty Block Has Its Own SchedTime
