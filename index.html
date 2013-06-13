@@ -37,7 +37,7 @@
 	<!-- Filled with Javascript -->
 	<div id="sched-view"></div>
 	
-	<div id="modal-backdrop"></div>
+	<!-- This is Moved by Lightbox -->
 	<div class="modal" id="class-data-modal">
 		<form id="class-data-form">
 			
@@ -70,8 +70,10 @@
 <script type="text/javascript" src="js/schedGrid.js"></script>
 <script type="text/javascript" src="js/schedList.js"></script>
 <script type="text/javascript" src="js/interaction.js"></script>
+<script type="text/javascript" src="js/server.js"></script>
 <script type="text/javascript">
 
+// This is Only Here for Legacy Reasons and Will Be Removed Soon
 var SCHED_PRELOAD = [
 	{
 		times: [
@@ -97,10 +99,6 @@ var SCHED_PRELOAD = [
 		color: [0,255,0]
 	}
 ];
-
-//$(document).ready(function() {
-//	Sched.preload(SCHED_PRELOAD);
-//});
 
 </script>
 </body>

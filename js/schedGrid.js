@@ -82,7 +82,8 @@ var SchedGrid = {
 					var title_sn = title.replace('+', 'plus');
 					block.addClass('series-'+type);
 					block.addClass('period-'+title_sn);
-					block.attr('data-period', title_sn);
+					block.attr('data-period', title);
+					block.attr('data-period-sn', title_sn);
 
 					// Calculate Positioning Based on Numeric Times
 					bTop = time.start*actualCellHeight;

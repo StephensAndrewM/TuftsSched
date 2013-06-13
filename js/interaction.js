@@ -7,6 +7,9 @@ var Interaction = {
 		
 	},
 	
+	// This is Set Whenever a Series is Selected from the Sidebar
+	activeSeries: '',
+	
 	overlaySelectButtonInit: function() {
 
 		$('.overlay-select-button').hover(function() {
@@ -36,6 +39,9 @@ var Interaction = {
 			
 			var type = $(this).attr('data-type');
 			
+			// Save for Use in Form Interaction
+			Interaction.activeSeries = type;
+			
 			$('.sched-empty-block:not(.series-'+type+')').removeClass('series-active').stop()
 				.animate({ opacity:0 }, 200, function() {
 					$(this).addClass('sched-empty-block-collapsed');
@@ -56,7 +62,7 @@ var Interaction = {
 			
 			if (!$(this).hasClass('series-active')) { return; }
 			
-			var period = $(this).attr('data-period');
+			var period = $(this).attr('data-period-sn');
 			$('.sched-empty-block:not(.period-'+period+')').stop()
 					.animate({ opacity:0.3 }, 100);
 			$('.sched-empty-block.period-'+period).stop()
@@ -76,7 +82,25 @@ var Interaction = {
 		
 	},
 	
+	// These Are Set Whenever the Modal Opens to Determine Saving Functionality
+	modalMode: '',
+	modalPeriod: '',
+	
 	addBlockModalOpen: function(period) {
+				
+		// Set Based on Clicked Block
+		var timeDisplay = $('#data-display-time');
+		timeDisplay.html('<span class="data-display-heading">'+period+' Block</span>');
+		for (var i in PERIODS[Interaction.activeSeries][period]) {
+			var time = PERIODS[Interaction.activeSeries][period][i];
+			timeDisplay.append(DAYS[time.day] + ", " + decimalToTime(time.start) 
+				+ " - " + decimalToTime(time.start+(time.duration/59.9)) + "<br />");
+				// Division by 59.9 Because of Rounding Issues (Yes, It's a Hack)
+		}
+		
+		// Data for Saving
+		Interaction.modalMode = 'ADD';
+		Interaction.modalPeriod = period;
 		
 		$.fancybox({
 			href: '#class-data-modal',
@@ -92,12 +116,33 @@ var Interaction = {
 	
 	addBlockModalSave: function() {
 		
+		// Validation (Basic)
+		if ($('#data-input-title').val() === '') {
+			alert('You must enter a name for the class.');
+			return false;
+		}
 		
+		var time = new BlockData(
+			$('#data-input-title').val(),			// Title
+			$('#data-input-location').val(),		// Location
+			$('#data-input-professor').val(),		// Professor
+			PERIODS[Interaction.activeSeries][Interaction.modalPeriod], //Times
+			Interaction.modalPeriod + ' Block',		// TimeLabel
+			[0,255,255]								// Color
+		);
+			
+		// Add to Grid and List
+		SchedGrid.addBlock(time);
+		SchedList.addBlock(time);
+		
+		// Add to Global Data
+		Sched.push(time);
+		
+		// Close Form
+		$.fancybox.close();
 		
 		return false;
 		
 	}
 	
 }
-
-$(document).ready(Interaction.init);

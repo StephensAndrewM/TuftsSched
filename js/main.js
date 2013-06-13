@@ -4,7 +4,7 @@
  */
 var Sched = [];
 
-/* SchedTime Class Delcaration
+/* SchedTime Class
  * Used in Predefined Periods Data
  * Each Empty Block Has Its Own SchedTime
  * 
@@ -22,6 +22,25 @@ var SchedTime = function(day, start, duration, column) {
 	this.column = (typeof column === "undefined") ? 0 : column;
 };
 
+/* BlockData Class
+ * Used When Storing Data Prior to Server Save and in Passing Between Functions
+ * 
+ * @param title Title of class, displayed on grid and list.
+ * @param location Location of class, for display.
+ * @param professor Professor of class, for display.
+ * @param times Array of SchedTime objects to determine positioning.
+ * @param timeLabel Period name assigned to the class block.
+ * @param color Array of integers giving RGB color for display.
+ */
+var BlockData = function(title, location, professor, times, timeLabel, color) {
+	this.title = title;
+	this.location = location;
+	this.professor = professor;
+	this.times = times;
+	this.timeLabel = timeLabel;
+	this.color = color;
+}
+
 // String Constants for Days in Week
 DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 // Used as Base for Calculating Decimal Time
@@ -33,6 +52,8 @@ END_HOUR = 21;	// 9 PM
 $(document).ready(function() {
 	SchedGrid.init();
 	SchedList.init();
+	Interaction.init();
+	Server.initRequest();
 });
 
 
