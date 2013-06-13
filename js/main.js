@@ -29,6 +29,14 @@ START_HOUR = 8;	// 8 AM
 END_HOUR = 21;	// 9 PM
 
 
+// Set Up Initialiazer Functions for Page
+$(document).ready(function() {
+	SchedGrid.init();
+	SchedList.init();
+});
+
+
+
 // Takes a Time in h:m Format and Returns a Decimal Format
 function timeToDecimal(time) {
 	
