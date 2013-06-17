@@ -93,6 +93,28 @@ body {
 .block-time { font-size:0.9em; }
 .block-title { font-weight:bold; }
 
+.button-block-edit {
+	background: url(../img/edit.png) no-repeat;
+	display:block;
+	position:absolute;
+	bottom: 3px;
+	right: 22px;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+}
+
+.button-block-delete {
+	background: url(../img/cancel.png) no-repeat;
+	display:block;
+	position:absolute;
+	bottom:3px;
+	right:3px;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+}
+
 
 .normform label {
 	display:block;
@@ -223,7 +245,7 @@ Modal
 	margin-top:0;
 }
 
-.class-data-label {
+.block-data-label {
 	width:26px;
 	height:37px;
 	/*background:#00ffff;*/
@@ -240,7 +262,7 @@ Modal
 .label-professor { background-image: url(../img/user_close.svg); }
 .label-time { background-image: url(../img/clock.svg); }
 
-.class-data-input {
+.block-data-input {
 	float:left;
 	width:414px;
 	font-family:'Open Sans', Arial, sans-serif;
@@ -251,12 +273,12 @@ Modal
 	color:black;
 }
 
-.class-data-input::-webkit-input-placeholder { color: #404040; }
-.class-data-input:-moz-placeholder { color: #404040; }
-.class-data-input::-moz-placeholder { color: #404040; }
-.class-data-input:-ms-input-placeholder { color: #404040; }
+.block-data-input::-webkit-input-placeholder { color: #404040; }
+.block-data-input:-moz-placeholder { color: #404040; }
+.block-data-input::-moz-placeholder { color: #404040; }
+.block-data-input:-ms-input-placeholder { color: #404040; }
 
-.class-data-display {
+.block-data-display {
 	width:414px;
 	padding:7px 9px;
 	margin-bottom:7px;
@@ -271,7 +293,7 @@ Modal
 	display: block;
 }
 
-.button-add-class {
+.button-add-block {
 	font-family:'Open Sans', Arial, sans-serif;
 	background:#679aff;
 	border:none;

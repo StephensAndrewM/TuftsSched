@@ -5,6 +5,12 @@ var Interaction = {
 		Interaction.overlaySelectButtonInit();
 		Interaction.emptyBlockInit();
 		
+		// Event Listeners for Add/Edit Form (Only Add Once)
+		$('#block-data-form').submit(Interaction.addBlockModalSave);
+		$('.button-close-form').click(function() {
+			$.fancybox.close();
+		});
+				
 	},
 	
 	// This is Set Whenever a Series is Selected from the Sidebar
@@ -42,11 +48,15 @@ var Interaction = {
 			// Save for Use in Form Interaction
 			Interaction.activeSeries = type;
 			
-			$('.sched-empty-block:not(.series-'+type+')').removeClass('series-active').stop()
+			$('.sched-empty-block:not(.series-'+type+')')
+				.removeClass('series-active')
+				.stop()
 				.animate({ opacity:0 }, 200, function() {
 					$(this).addClass('sched-empty-block-collapsed');
 				});
-			$('.sched-empty-block.series-'+type).stop()
+			
+			$('.sched-empty-block.series-'+type)
+				.stop()
 				.removeClass('sched-empty-block-collapsed')
 				.animate({ opacity:0.6 }, 200)
 				.addClass('series-active');
@@ -63,14 +73,17 @@ var Interaction = {
 			if (!$(this).hasClass('series-active')) { return; }
 			
 			var period = $(this).attr('data-period-sn');
-			$('.sched-empty-block:not(.period-'+period+')').stop()
-					.animate({ opacity:0.3 }, 100);
-			$('.sched-empty-block.period-'+period).stop()
-					.animate({ opacity:0.9 }, 100);
+			$('.sched-empty-block:not(.period-'+period+')')
+				.stop()
+				.animate({ opacity:0.3 }, 100);
+			$('.sched-empty-block.period-'+period)
+				.stop()
+				.animate({ opacity:0.9 }, 100);
 			
 		}, function() {
 			
-			$('.sched-empty-block.series-active').stop()
+			$('.sched-empty-block.series-active')
+					.stop()
 					.animate({ opacity:0.6 }, 200);
 			
 		}).click(function() {
@@ -87,6 +100,10 @@ var Interaction = {
 	modalPeriod: '',
 	
 	addBlockModalOpen: function(period) {
+		
+		// Reset Inputs
+		$('#block-data-form .block-data-input').val('');
+		$('#button-submit-block-form').val('Add Class to Calendar');
 				
 		// Set Based on Clicked Block
 		var timeDisplay = $('#data-display-time');
@@ -103,14 +120,9 @@ var Interaction = {
 		Interaction.modalPeriod = period;
 		
 		$.fancybox({
-			href: '#class-data-modal',
+			href: '#block-data-modal',
 			width:500
 		});
-		
-		$('#class-data-form').submit(Interaction.addBlockModalSave);
-		$('.button-close-form').click(function() {
-			$.fancybox.close();
-		})
 	
 	},
 	
@@ -121,14 +133,14 @@ var Interaction = {
 			alert('You must enter a name for the class.');
 			return false;
 		}
-		
+				
 		var time = new BlockData(
 			$('#data-input-title').val(),			// Title
 			$('#data-input-location').val(),		// Location
 			$('#data-input-professor').val(),		// Professor
 			PERIODS[Interaction.activeSeries][Interaction.modalPeriod], //Times
 			Interaction.modalPeriod + ' Block',		// TimeLabel
-			[0,255,255]								// Color
+			Interaction.randomColor()				// Color
 		);
 			
 		// Add to Grid and List
@@ -142,6 +154,22 @@ var Interaction = {
 		$.fancybox.close();
 		
 		return false;
+		
+	},
+			
+	randomColor: function() {
+		
+		// Generate Three Random RGB Values
+		// With Bounds to Avoid Too Dark or Light Colors
+		var rand1 = Math.floor(Math.random()*208)+32;
+		var rand2 = Math.floor(Math.random()*208)+32;
+		var rand3 = Math.floor(Math.random()*208)+32;
+		var color = [rand1, rand2, rand3];
+		
+		// Set One to 255 to Make Sure Color is Bright Enough
+		var randi = Math.floor(Math.random()*3);
+		color[randi] = 255;
+		return color;
 		
 	}
 	

@@ -152,8 +152,15 @@ var SchedGrid = {
 			block.attr('data-start', time.start);
 			block.attr('data-duration', time.duration);
 			
+			// Append Edit/Remove Controls
+			block.append('<div class="button-block-edit"></div>');
+			block.append('<div class="button-block-delete"></div>');
+			
 			// Then Display the Cal Block
 			col.append(block);
+			
+			// Fade in Block
+			block.css({ opacity:0 }).animate({ opacity:1 }, 500);
 
 		}
 		
